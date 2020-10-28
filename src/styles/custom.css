@@ -1,0 +1,5 @@
+@import "./prism.css";
+
+.token.comment {
+  color: rgba(138, 154, 204, 1);
+}

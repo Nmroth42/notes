@@ -14,32 +14,33 @@ type Props = {
 const PostPreviews = ({ posts }: Props) => {
 
 
-  React.useEffect(() => {
+  // React.useEffect(() => {
+  //
+  //   let value = ''
+  //   const { search: bvalue } = queryString.parse(location.search);
+  //   if (bvalue) {
+  //     value = bvalue
+  //   }
+  //   const searchResults = posts.filter(post => {
+  //     if (
+  //       post.node.frontmatter.title
+  //         .toLowerCase()
+  //         .includes(value.toLowerCase()) ||
+  //       post.node.frontmatter.title.includes(value.toLowerCase()) ||
+  //       post.node.frontmatter.date
+  //         .toLowerCase()
+  //         .includes(value.toLowerCase()) ||
+  //       post.node.frontmatter.date.includes(value.toLowerCase())
+  //     ) {
+  //       return post
+  //     }
+  //   })
+  //   setAllPosts(searchResults)
+  // }, []);
 
-    let value = ''
-    const { search: bvalue } = queryString.parse(location.search);
-    if (bvalue) {
-      value = bvalue
-    }
-    const searchResults = posts.filter(post => {
-      if (
-        post.node.frontmatter.title
-          .toLowerCase()
-          .includes(value.toLowerCase()) ||
-        post.node.frontmatter.title.includes(value.toLowerCase()) ||
-        post.node.frontmatter.date
-          .toLowerCase()
-          .includes(value.toLowerCase()) ||
-        post.node.frontmatter.date.includes(value.toLowerCase())
-      ) {
-        return post
-      }
-    })
-    setAllPosts(searchResults)
-  }, []);
-
-  const { search } = queryString.parse(location.search)
-  const [query, setQuery] = useState(search || '')
+  // const { search } = queryString.parse(location.search)
+  // const [query, setQuery] = useState(search || '')
+  const [query, setQuery] = useState('')
   const [allPosts, setAllPosts] = useState(posts)
 
   const handleSearch = (e) => {

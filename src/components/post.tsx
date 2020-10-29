@@ -61,13 +61,7 @@ const Post = ({
           ) : null}
         </div>
       </header>
-      {coverImage && (
-        <Img
-          fluid={coverImage.childImageSharp.fluid}
-          className={style.coverImage}
-          alt="Post cover"
-        />
-      )}
+  
       <MDXRenderer>{body}</MDXRenderer>
       <div className={style.actions}>
 

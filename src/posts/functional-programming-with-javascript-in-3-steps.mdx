@@ -1,7 +1,7 @@
 ---
 title: "Functional Programming with JavaScript in 3 Steps"
 date: "2019-04-02"
-coverImage: "../images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg"
+coverImage: "../images/neutral.jpg"
 path: "/functional-programming-with-javascript-in-3-steps"
 excerpt: "Pure functions, immutability & declarative pattern… you're in for a treat."
 tags: []
@@ -25,8 +25,8 @@ AND
 
 The caller and the pure function may only communicate via arguments and return value:
 
-```js
-// ❌ impure (using side effect instead of return value)
+```js{numberLines: true}
+// ❌ impu (using side effect instead of return value)
 function addTaco(array) {
   array.push("taco");
 }
@@ -54,14 +54,15 @@ In JavaScript, all primitives (boolean, string, etc.) are immutable. While it is
 
 If we wish to modify it, we must duplicate it and assign it a new variable:
 
-```js
-// ❌ mutable
-const bands = ["Metallica", "Queen"];
-bands.push("Nirvana");
+```js{numberLines: true}
+  const bands = ["Metallica", "Queen"];
+  bands.push("Nirvana");
 
-// ✅ immutable
-const someBands = ["Metallica", "Queen"];
-const bands = [...someBands, "Nirvana"];
+
+  const someBands = ["Metallica", "Queen"];
+  const bands = [...someBands, "Nirvana"];
+
+
 ```
 
 Since they have one and only one state, **immutable objects & arrays cannot be made invalid by change and they avert side effects.**

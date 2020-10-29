@@ -17,21 +17,7 @@ const Footer = ({ copyrights }: Props) => (
       />
     ) : (
       <>
-        <span className={style.item}>
-          <OutboundLink href="https://github.com/alexnault">
-            Github
-          </OutboundLink>
-        </span>
-        <span className={style.item}>
-          <OutboundLink href="https://www.linkedin.com/in/naultalex">
-            LinkedIn
-          </OutboundLink>
-        </span>
-        <span className={style.item}>
-          <OutboundLink href="https://twitter.com/nault_alex">
-            Twitter
-          </OutboundLink>
-        </span>
+  
       </>
     )}
   </footer>

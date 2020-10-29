@@ -75,7 +75,7 @@ const PostPreviews = ({ posts }: Props) => {
 
   return (
     <>
-      <h2 className={typography.h3}>Latest articles</h2>
+      <h2 className={typography.h3}>Latest notes</h2>
       <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
         <input
           type="text"

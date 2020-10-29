@@ -30,39 +30,13 @@ const About = ({ avatar }: Props) => {
   return (
     <div className={style.about}>
 
-      <div className={style.content}>
-        <h1 className={`${typography.h2} ${style.title} `}>
-          {"Hi, I'm Alex Nault and I solve problems using software."}
-        </h1>
-        <p>
-          {"I'm currently building solutions at "}
-          <OutboundLink href="https://apprentx.rocks">Apprentx</OutboundLink>
-          {" to improve the way we learn. Previously "}
-          <OutboundLink href="https://www.classcraft.com">
-            Classcraft
-          </OutboundLink>
-          {" and "}
-          <OutboundLink href="https://www.ubisoft.com">Ubisoft</OutboundLink>.
-        </p>
+      <div style={{display:'flex'}} className={style.content}>
+
         <div className={style.social}>
           <OutboundLink href="https://github.com/alexnault" aria-label="Github">
-            <Icon style={{ cursor: "pointer" }} size={24} d={githubIcon} />
+            <Icon style={{ cursor: "pointer" }} size={54} d={githubIcon} />
           </OutboundLink>
-          <OutboundLink
-            href="https://www.linkedin.com/in/naultalex"
-            aria-label="LinkedIn"
-          >
-            <Icon style={{ cursor: "pointer" }} size={24} d={linkedInIcon} />
-          </OutboundLink>
-          <OutboundLink
-            href="https://twitter.com/nault_alex"
-            aria-label="Twitter"
-          >
-            <Icon style={{ cursor: "pointer" }} size={24} d={twitterIcon} />
-          </OutboundLink>
-          <OutboundLink href="mailto:nault.alex@gmail.com" aria-label="Email">
-            <Icon style={{ cursor: "pointer" }} size={24} d={emailIcon} />
-          </OutboundLink>
+
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ module.exports = {
       alt: "",
     },
     image: "/alex.jpg",
-    logoText: "nmroth42.notes",
+    logoText: "nmroth42.github.io/notes",
     defaultTheme: "black",
     postsPerPage: 1000,
     siteUrl: "https://nm42.dev",

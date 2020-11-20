@@ -129,5 +129,5 @@ module.exports = {
     "gatsby-plugin-robots-txt",
     "gatsby-plugin-remove-generator",
   ],
-  pathPrefix: "/profile",
+  pathPrefix: "/notes",
 };

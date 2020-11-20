@@ -1,0 +1,41 @@
+---
+title: "CPython Internals: Interned Objects"
+date: "2020-10-11"
+coverImage: "../images/neutral.jpg"
+path: "/cpython-internals-interned-objects"
+excerpt: ""
+tags: []
+---
+
+
+In CPython 3.7 interned objects are:
+
+- Integers ranging from -5 to 256.
+- Strings containing only ASCII letters, numbers, or underscores
+
+This is because these variables are often used in many programs. By interning, Python prevents memory allocation for persistently used objects.
+
+```python
+>>> x = 1
+>>> y = 0 + 1
+>>> x is y
+True
+```
+
+```python
+>>> s1 = "Hello world!"
+>>> s2 = "Hello world!"
+>>> s1 is s2
+False
+```
+
+Optionally, you can use `sys.intern()` function to create custom interned string object.
+By using `sys.intern()` you ensure that you never create two string objects that have the same value - when you request the creation of a second string object with the same value as an existing string object,
+you receive a reference to the pre-existing string object. This way, you are saving memory.
+
+For example, interning strings is useful to gain a little performance on dictionary lookup
+ – if the keys in a dictionary are interned, and the lookup key is interned, the key comparisons (after hashing) can be done by a pointer compare instead of a string compare.
+
+
+## Sources
+- [Python documentation. Built-in Functions](https://docs.python.org/2/library/functions.html#intern)

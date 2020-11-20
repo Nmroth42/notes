@@ -1,0 +1,53 @@
+---
+title: "CPython Internals: PyObject and name binding"
+date: "2020-10-11"
+coverImage: "../images/neutral.jpg"
+path: "/cpython-internals-pyobject"
+excerpt: ""
+tags: []
+---
+import { ReactComponent as PythonPyobject } from "../images/python-pyobject.svg";
+
+## Everything is an PyObject
+Python objects are structures allocated on the heap. They have type PyObject.
+
+PyObject is a C struct. Each instance of PyObject contains the variable ob_refcnt where the reference count is kept and ob_type where the type is kept.
+
+
+## Python name and PyObject
+
+In C and C++, a variable is a named memory location.
+The value of the variable is the value stored in that location.
+This memory location is allocated regardless of whether a value is assigned to it yet.
+
+In Python, a variable is a name used to refer to an object.
+The value of the variable is that object.
+
+```python
+ x = 0
+ x = 1
+```
+<PythonPyobject className="excalidraw" />
+This illustration demonstrates that `x` binds to an object  and does not own the memory area.
+
+Note that `x` and `y` is immutable.
+
+
+```python
+>>> y = x
+>>> y is x
+True
+
+>>> y += 1
+>>> y is x
+False
+```
+
+**Immutable** objects are "passed by value".
+
+**Mutable** objects are "passed by reference".
+
+
+## Sources
+- [Reference Counting in Python](http://edcjones.tripod.com/refcount.html)
+- [Python pointers: what's the point?](https://habr.com/ru/company/mailru/blog/454324/)

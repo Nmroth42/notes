@@ -17,7 +17,7 @@ const Footer = ({ copyrights }: Props) => (
       />
     ) : (
       <>
-  
+
       </>
     )}
   </footer>

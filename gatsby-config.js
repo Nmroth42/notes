@@ -9,19 +9,19 @@ module.exports = {
   siteMetadata: {
     title: `nm42`,
     description:
-      "I solve problems using software and write bite-sized articles for developers.",
+      "",
     copyrights: "",
-    author: `Alex Nault`,
-    twitterUsername: "@nault_alex",
+    author: ``,
+    twitterUsername: "",
     logo: {
       src: "",
       alt: "",
     },
     image: "/alex.jpg",
-    logoText: "nmroth42.profile",
+    logoText: "nmroth42.notes",
     defaultTheme: "black",
-    postsPerPage: 6,
-    siteUrl: "https://alexnault.dev",
+    postsPerPage: 1000,
+    siteUrl: "https://nm42.dev",
   },
   plugins: [
     {

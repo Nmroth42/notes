@@ -1,0 +1,28 @@
+---
+title: "CPython Internals: Execution Process"
+date: "2020-10-11"
+coverImage: "../images/internals.jpg"
+path: "/cpython-internals-execution-process"
+excerpt: ""
+tags: []
+---
+import { ReactComponent as PythonExecutionSteps } from "../images/python-execution-steps.svg";
+
+## What is CPython?
+
+Python is a language. A programming language is a notation for writing programs, which are specifications of a computation or algorithm.
+This means that it's simply the rules and syntax for writing code. Separately we have a programming language implementation.
+
+The standard language implementation of Python is CPython.
+CPython can be defined as both an interpreter and a compiler as it compiles Python code into bytecode before interpreting it.
+
+## Execution Process
+CPython compiles your Python source code into bytecode. That bytecode is then executed on the CPython Virtual Machine.
+<PythonExecutionSteps className="excalidraw" />
+
+Note that bytecode appears at compile stage after AST.
+
+## Sources
+- [How CPython's Compiler Works - Brett Cannon](https://www.youtube.com/watch?v=R31NRWgoIWM)
+- [Architecture of CPython, the bricks! - Stéphane Wirtel](https://www.youtube.com/watch?v=ZkAc6hzGun4&t=1502s)
+- [CPython internals. A ten-hour codewalk through the Python interpreter source code - Philip Guo](https://pg.ucsd.edu/cpython-internals.htm)

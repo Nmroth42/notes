@@ -1,0 +1,27 @@
+---
+title: "Python: Metaclasses"
+date: "2020-10-11"
+coverImage: "../images/meta.jpg"
+path: "/python-metaclasses"
+excerpt: ""
+tags: []
+---
+import { ReactComponent as PythonPyobject } from "../images/python-pyobject.svg";
+
+The simplest metaclass is `type`. When `type` receives one parameter as input, it returns the type of the object passed as a parameter. In this case, it does not work as a metaclass. When `type` receives three parameters, it acts as a metaclass and creates a class based on the passed parameters.
+
+
+```python
+>>> MyClass = type('MyClass', (object,), {'my_attribute': 0})
+>>> type(MyClass)
+<class 'type'>
+>>> o = MyClass()
+>>> o.my_attribute
+0
+```
+https://webdevblog.ru/kogda-ispolzovat-metaklassy-v-python-5-interesnyh-variantov-ispolzovaniya/
+
+
+## Sources
+- [Reference Counting in Python](http://edcjones.tripod.com/refcount.html)
+- [Python pointers: what's the point?](https://habr.com/ru/company/mailru/blog/454324/)

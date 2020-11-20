@@ -1,6 +1,3 @@
-# [alexnault.dev](https://alexnault.dev)
-
-My personal website and blog.
 
 ## Getting started
 
@@ -19,9 +16,6 @@ My personal website and blog.
 | npm run lint   | Lint files with eslint                                                  |
 | npm run serve  | Serve the production build at [localhost:9000](http://localhost:9000)   |
 
-## Contributing
-
-Contributions of all kind are welcomed! Simply submit a PR.
 
 ## Acknowledgements
 
@@ -29,8 +23,3 @@ Thanks to:
 
 - [Radek Kozieł](https://github.com/panr)
 - [iconmonstr](https://iconmonstr.com)
-
-## Licenses
-
-- [Website](https://github.com/alexnault/alexnault.dev/blob/master/LICENSE-website)
-- [Posts](https://github.com/alexnault/alexnault.dev/blob/master/LICENSE-posts)

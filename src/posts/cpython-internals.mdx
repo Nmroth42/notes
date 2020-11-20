@@ -8,7 +8,6 @@ tags: []
 ---
 
 import { ReactComponent as TraditionalDependencySvg } from "../images/traditional-dependency.svg";
-import { ReactComponent as DependencyInversionSvg } from "../images/dependency-inversion.svg";
 
 _This is part five of a five-part series about SOLID principles in functional TypeScript._
 
@@ -75,7 +74,6 @@ Let's reimplement it with dependency inversion this time!
 
 We're going to decouple `SignupService` and `HttpClient`. It's going to look like this:
 
-<DependencyInversionSvg className="excalidraw" />
 
 First, using an `interface`, let's define the abstraction that will act as the dependency between the domain and the infrastructure:
 

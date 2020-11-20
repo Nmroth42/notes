@@ -1,0 +1,299 @@
+---
+title: "Code style: Pythonic"
+date: "2020-10-11"
+coverImage: "../images/pythonic.jpg"
+path: "/code-style-pythonic"
+excerpt: ""
+tags: []
+---
+## Table of Contents
+1. [Zen of Python](#zen-of-python)
+2. [Line Length](#line-length)
+3. [Credibility](#credibility)
+3. [Modifying the values in a list](#modifying-the-values-in-a-list)
+3. [Short ways to manipulate lists](#short-ways-to-manipulate-lists)
+3. [Merging dictionaries](#merging-dictionaries)
+3. [Using map](#using-map)
+3. [Ternary operator](#ternary-operator)
+3. [String formatting](#string-formatting)
+3. [Keyword arguments](#keyword-arguments)
+
+
+## Zen of Python
+
+    Beautiful is better than ugly.
+    Explicit is better than implicit.
+    Simple is better than complex.
+    Complex is better than complicated.
+    Flat is better than nested.
+    Sparse is better than dense.
+    Readability counts.
+    Special cases aren't special enough to break the rules.
+    Although practicality beats purity.
+    Errors should never pass silently.
+    Unless explicitly silenced.
+    In the face of ambiguity, refuse the temptation to guess.
+    There should be one-- and preferably only one --obvious way to do it.
+    Although that way may not be obvious at first unless you're Dutch.
+    Now is better than never.
+    Although never is often better than right now.
+    If the implementation is hard to explain, it's a bad idea.
+    If the implementation is easy to explain, it may be a good idea.
+    Namespaces are one honking great idea -- let's do more of those!
+    --Tim Peters
+
+
+## Line Length
+
+A single line should not exceed the number of 79 characters, whereas a docstring or comment is no longer than 72 characters. Lines of code can be wrapped by using a backslash (\) as follows:
+
+Code with a Line-Break
+
+
+```python
+with open('/path/to/some/file/you/want/to/read') as file_1, \
+     open('/path/to/some/file/being/written', 'w') as file_2:
+    file_2.write(file_1.read())
+```
+ or
+```python
+value = (foo.bar()['first'][0]*baz.ham(1, 2)[5:9]
+        + verify(34, 20)*skip(500, 360))
+```
+
+## Credibility
+
+```python
+a = 10
+b = 1000
+total_sum = 0while b >= a:
+    total_sum += a
+    a += 1
+```
+
+```python
+total_sum = sum(range(10, 1001))
+```
+
+This single line of code generates the exact same result as above (for the record, I did intend to write 1001 in the code as Python’s range command has an inclusive lower bound and a non-inclusive upper bound,
+meaning the lower number will be a part of the loop, while the higher number will not).
+ If you were to write Python code using the first example, your credibility as a Python developer would go down as the Python community is very passionate about writing code following the guidelines.
+
+## Naming conventions
+
+Naming conventions are important for any language to provide a common means of identifying types and objects. Here’s an abridged version of the naming conventions:
+
+- Packages/Modules: Must use all-lowercase. Underscores can be used if necessary, but are discouraged. Ex: `package` or `module.py`.
+- Classes: Must use CapWords. Recommended to not use the word Class in the name. Ex: `class BasketballTeam:`.
+- Constants: Must use screaming snake case. Ex: `API_URL = '...'`.
+- Functions/Variables: Must use standard snake case. Ex: `home_team_points = ...` or `def final_boxscore(...)`.
+- Function/Method Arguments: Must use standard snake case. Ex: `home_team_name`.
+
+Prefer "reverse notation".
+
+**yes**
+
+    elements = ...
+    elements_active = ...
+    elements_defunct = ...
+
+**No**
+
+    elements = ...
+    active_elements = ...
+    defunct_elements ...
+
+## Modifying the values in a list
+
+**Bad:**
+
+Remember that assignment never creates a new object. If two or more variables refer to the same list, changing one of them changes them all.
+```python
+# Add three to all list members.
+a = [3, 4, 5]
+b = a                     # a and b refer to the same list object
+
+for i in range(len(a)):
+    a[i] += 3             # b[i] also changes
+```
+
+**Good:**
+
+It’s safer to create a new list object and leave the original alone.
+
+```python
+a = [3, 4, 5]
+b = a
+
+# assign the variable "a" to a new list without changing "b"
+a = [i + 3 for i in a]
+```
+Use `enumerate()` keep a count of your place in the list.
+```python
+a = [3, 4, 5]
+for i, item in enumerate(a):
+    print i, item
+# prints
+# 0 3
+# 1 4
+# 2 5
+```
+## Short Ways to Manipulate Lists
+
+List comprehensions provide a powerful, concise way to work with lists.
+
+Generator expressions follow almost the same syntax as list comprehensions but return a generator instead of a list.
+
+Creating a new list requires more work and uses more memory. If you are just going to loop through the new list, prefer using an iterator instead.
+
+If your logic is too complicated for a short list comprehension or generator expression, consider using a generator function instead of returning a list.
+
+```python
+def make_batches(items, batch_size):
+    """
+    >>> list(make_batches([1, 2, 3, 4, 5], batch_size=3))
+    [[1, 2, 3], [4, 5]]
+    """
+    current_batch = []
+    for item in items:
+        current_batch.append(item)
+        if len(current_batch) == batch_size:
+            yield current_batch
+            current_batch = []
+    yield current_batch
+```
+
+## List Comprehension vs Generator Expressions
+
+```python
+from __future__ import print_function
+import sys
+
+l = [n*2 for n in range(1000)] # List comprehension
+g = (n*2 for n in range(1000)) # Generator expression
+
+print(type(l))  # <type 'list'>
+print(type(g))  # <type 'generator'>
+
+print(sys.getsizeof(l))  # 9032
+print(sys.getsizeof(g))  # 80
+
+print(l[4])   # 8
+#print(g[4])   # TypeError: 'generator' object has no attribute '__getitem__'
+
+for v in l:
+    pass
+for v in g:
+    pass
+```
+
+The generator yields one item at a time and generates item only when in demand. Whereas, in a list comprehension, Python reserves memory for the whole list. Thus we can say that the generator expressions are memory efficient than the lists
+
+There is a remarkable difference in the execution time. Thus, generator expressions are faster than list comprehension and hence time efficient.
+
+
+## Merging dictionaries
+
+```python
+dict1 = { 'a': 1, 'b': 2 }
+dict2 = { 'b': 3, 'c': 4 }
+merged = { **dict1, **dict2 }
+print (merged)
+# {'a': 1, 'b': 3, 'c': 4}
+```
+If there are overlapping keys, the keys from the first dictionary will be overwritten
+
+## Slicing a list
+
+The basic syntax of list slicing is:
+
+    a[start:stop:step]
+
+Start, stop and step are optional. If you don’t fill them in, they will default to:
+
+- 0 for `start`
+- the end of the string for `stop`
+- 1 for `step`
+
+```python
+# We can easily create a new list from
+# the first two elements of a list:
+first_two = [1, 2, 3, 4, 5][0:2]
+print(first_two)
+# [1, 2]
+
+# And if we use a step value of 2,
+# we can skip over every second number
+# like this:
+steps = [1, 2, 3, 4, 5][0:5:2]
+print(steps)
+# [1, 3, 5]
+
+# This works on strings too. In Python,
+# you can treat a string like a list of
+# letters:
+mystring = "abcdefdn nimt"[::2]
+print(mystring)
+# 'aced it'
+```
+
+## Using map()
+
+One of Python’s built-in functions is called map(). The syntax for map() is:
+
+    map(function, something_iterable)
+
+So you give it a function to execute, and something to execute on. This can be anything that’s iterable. In the examples below I’ll use a list.
+
+```python
+def upper(s):
+    return s.upper()
+
+mylist = list(map(upper, ['sentence', 'fragment']))
+print(mylist)
+# ['SENTENCE', 'FRAGMENT']
+
+# Convert a string representation of
+# a number into a list of ints.
+list_of_ints = list(map(int, "1234567")))
+print(list_of_ints)
+# [1, 2, 3, 4, 5, 6, 7]
+```
+
+## Ternary operator
+
+This is another one of those ways to make your code more concise while still keeping it readable:
+
+    [on_true] if [expression] else [on_false]
+
+As an example:
+
+    x = "Success!" if (y == 2) else "Failed!"
+
+## String formatting
+
+```python
+data = {'day':'Saturday'}
+print("{day}".format(**data))
+```
+or
+```python
+print(f"{day}")
+```
+## Keyword arguments
+
+Use a leading `*` to require keyword aruments`
+```python
+def connect(*, user, server)
+connect(user='mkennedy', server='db_server')
+```
+Написать про python on demand computation with field
+Написать про hacking python's memory with slots
+Написать про Data Classes in Python 3.7+
+Написать про метаклассы
+
+## Sources
+- [Python - Markus Gattol](https://www.markus-gattol.name/ws/python.html)
+- [Transforming Code into Beautiful, Idiomatic Python - Raymond Hettinger](https://www.youtube.com/watch?v=OSGv2VnC0go)
+- [Pythonic code, by example - Michael Kennedy](https://www.youtube.com/watch?v=rgET4u3zkkY)
+- [30 Python Best Practices, Tips, And Tricks - Erik van Baaren](https://towardsdatascience.com/30-python-best-practices-tips-and-tricks-caefb9f8c5f5)
